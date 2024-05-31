@@ -41,11 +41,11 @@ const Vacation = () => {
   return (
     <div className="my-16 md:mt-0">
       <div className="space-y-2">
-        <h3 className="text-primary-blue font-semibold text-lg uppercase">
+        <h3 className="text-primary-blue font-semibold text-sm md:text-lg uppercase">
           Lorem, ipsum dolor.
         </h3>
         <div className="flex flex-row justify-between items-center">
-          <h1 className="capitalize font-bold text-3xl">
+          <h1 className="capitalize font-bold text-xl md:text-3xl">
             Lorem ipsum dolor sit amet
           </h1>
           <div className="hidden md:flex flex-row gap-1">

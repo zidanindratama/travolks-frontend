@@ -39,11 +39,11 @@ const Reservation = () => {
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-x-12">
         <div className="flex flex-col">
           <div className="space-y-2">
-            <h3 className="text-primary-blue font-semibold text-lg uppercase">
+            <h3 className="text-primary-blue font-semibold text-sm md:text-lg uppercase">
               Lorem, ipsum dolor.
             </h3>
             <div className="flex flex-row justify-between items-center">
-              <h1 className="capitalize font-bold text-3xl">
+              <h1 className="capitalize font-bold text-xl md:text-3xl">
                 Lorem ipsum dolor sit amet
               </h1>
             </div>
@@ -61,10 +61,10 @@ const Reservation = () => {
                     <LucideIcon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h1 className="font-semibold text-lg">
+                    <h1 className="font-semibold text-md md:text-lg">
                       Lorem ipsum dolor sit amet consectetur.
                     </h1>
-                    <p className="md:w-9/12 text-md">
+                    <p className="md:w-9/12 text-sm md:text-md">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Possimus, atque.
                     </p>
