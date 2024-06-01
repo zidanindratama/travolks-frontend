@@ -1,3 +1,4 @@
+import FindDestination from "@/components/main/FindDestination";
 import HeroLanding from "@/components/main/HeroLanding";
 import Navbar from "@/components/main/Navbar";
 import Reservation from "@/components/main/Reservation";
@@ -11,6 +12,7 @@ const Home = () => {
       <HeroLanding />
       <Vacation />
       <Reservation />
+      <FindDestination />
     </div>
   );
 };

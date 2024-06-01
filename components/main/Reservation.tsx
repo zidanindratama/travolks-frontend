@@ -61,10 +61,10 @@ const Reservation = () => {
                     <LucideIcon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h1 className="font-semibold text-md md:text-lg">
+                    <h1 className="font-semibold text-sm md:text-lg">
                       Lorem ipsum dolor sit amet consectetur.
                     </h1>
-                    <p className="md:w-9/12 text-sm md:text-md">
+                    <p className="md:w-9/12 text-xs md:text-md">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Possimus, atque.
                     </p>
