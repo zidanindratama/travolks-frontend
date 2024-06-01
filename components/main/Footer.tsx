@@ -21,15 +21,15 @@ const Footer = () => {
             innovation meets elegance.
           </p>
           <div className="mt-3 space-y-3">
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-3 items-center">
               <Phone className="w-5 h-5 text-primary-blue" />
               <p>0877-1404-4760</p>
             </div>
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-3 items-center">
               <Mail className="w-5 h-5 text-primary-blue" />
               <p>zidanindratama03@gmail.com</p>
             </div>
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-3 items-center">
               <Github className="w-5 h-5 text-primary-blue" />
               <Link
                 href={"https://github.com/zidanindratama/travolks-frontend"}
@@ -37,7 +37,7 @@ const Footer = () => {
                 My GitHub Repo
               </Link>
             </div>
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-3 items-center">
               <Link2 className="w-5 h-5 text-primary-blue" />
               <Link
                 href={"https://zidanindratama.vercel.app"}
