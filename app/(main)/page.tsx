@@ -1,4 +1,7 @@
+import CTA from "@/components/main/CTA";
+import FAQ from "@/components/main/FAQ";
 import FindDestination from "@/components/main/FindDestination";
+import Footer from "@/components/main/Footer";
 import HeroLanding from "@/components/main/HeroLanding";
 import Navbar from "@/components/main/Navbar";
 import Reservation from "@/components/main/Reservation";
@@ -15,6 +18,9 @@ const Home = () => {
       <Reservation />
       <FindDestination />
       <Testimonials />
+      <FAQ />
+      <CTA />
+      <Footer />
     </div>
   );
 };

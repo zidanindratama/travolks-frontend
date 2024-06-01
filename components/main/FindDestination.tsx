@@ -13,40 +13,40 @@ const destinationsData: Destination[] = [
   {
     id: 1,
     icon: "MapPin",
-    title: "Lorem ipsum.",
+    title: "Explore Exotic Beaches",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque.",
+      "Unwind on pristine beaches with crystal-clear waters and golden sands.",
   },
   {
     id: 2,
     icon: "Heart",
-    title: "Lorem ipsum.",
+    title: "Experience Romantic Getaways",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque.",
+      "Rekindle your love amidst stunning landscapes and breathtaking views.",
   },
   {
     id: 3,
     icon: "Users",
-    title: "Lorem ipsum.",
+    title: "Embark on Group Adventures",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque.",
+      "Join like-minded travelers and explore fascinating destinations together.",
   },
 ];
 
 const FindDestination = () => {
   return (
-    <div className="my-8 md:my-0">
+    <div className="my-8 md:mt-24">
       <div className="space-y-2 flex flex-col m-auto justify-center items-center">
         <h3 className="text-primary-blue font-semibold text-sm md:text-lg uppercase">
-          Lorem, ipsum dolor.
+          Discover Your Next Adventure
         </h3>
         <h1 className="capitalize font-bold text-xl md:text-3xl">
-          Lorem ipsum dolor sit amet
+          Explore Exciting Destinations
         </h1>
-        <p className="text-center md:w-9/12">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam iure
-          sunt aut accusamus rem. Delectus nisi voluptates facere quasi atque
-          debitis illum dolorem corporis tempora!
+        <p className="text-center text-sm md:text-base md:w-9/12">
+          Ready for an unforgettable journey? Explore our curated selection of
+          breathtaking destinations. From serene beaches to majestic mountains,
+          there&apos;s a perfect adventure waiting just for you!
         </p>
       </div>
       <Image
@@ -65,8 +65,8 @@ const FindDestination = () => {
               className="flex flex-row items-center gap-4"
               key={desctination.id}
             >
-              <div className="p-2 bg-gray-400/30 w-fit h-fit rounded-full drop-shadow-md">
-                <LucideIcon className="w-6 h-6" />
+              <div className="p-2 bg-primary-blue-light/20 w-fit h-fit rounded-full drop-shadow-md">
+                <LucideIcon className="w-6 h-6 text-primary-blue" />
               </div>
               <div>
                 <h1 className="font-semibold text-md md:text-lg">

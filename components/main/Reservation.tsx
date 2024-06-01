@@ -13,23 +13,23 @@ const reservationsData: Reservation[] = [
   {
     id: 1,
     icon: "Search",
-    title: "Lorem ipsum dolor sit amet consectetur.",
+    title: "Discover Your Dream Destination",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque.",
+      "Embark on a journey to uncover the destination of your dreams. Our handpicked selection of the world's best vacation spots is waiting for you.",
   },
   {
     id: 2,
     icon: "Pen",
-    title: "Lorem ipsum dolor sit amet consectetur.",
+    title: "Effortless Booking Experience",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque.",
+      "Seamlessly book your adventure with our easy-to-use form. A few clicks and you're all set for an incredible experience.",
   },
   {
     id: 3,
-    icon: "Laugh",
-    title: "Lorem ipsum dolor sit amet consectetur.",
+    icon: "PlaneTakeoff",
+    title: "Embrace the Adventure",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque.",
+      "Prepare yourself for an unforgettable escapade. Pack your bags and relish every moment of your well-deserved getaway.",
   },
 ];
 
@@ -40,11 +40,11 @@ const Reservation = () => {
         <div className="flex flex-col">
           <div className="space-y-2">
             <h3 className="text-primary-blue font-semibold text-sm md:text-lg uppercase">
-              Lorem, ipsum dolor.
+              Explore New Destinations
             </h3>
             <div className="flex flex-row justify-between items-center">
               <h1 className="capitalize font-bold text-xl md:text-3xl">
-                Lorem ipsum dolor sit amet
+                Book Your Next Adventure
               </h1>
             </div>
           </div>
@@ -57,8 +57,8 @@ const Reservation = () => {
                   className="flex flex-row items-center gap-4"
                   key={reservation.id}
                 >
-                  <div className="p-2 bg-yellow-400/30 w-fit h-fit rounded-md drop-shadow-md">
-                    <LucideIcon className="w-6 h-6" />
+                  <div className="p-2 bg-primary-blue-light/20 w-fit h-fit rounded-md drop-shadow-md">
+                    <LucideIcon className="w-6 h-6 font-bold text-primary-blue" />
                   </div>
                   <div>
                     <h1 className="font-semibold text-md md:text-lg">

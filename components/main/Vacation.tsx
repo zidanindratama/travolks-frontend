@@ -42,11 +42,11 @@ const Vacation = () => {
     <div className="my-16 md:mt-0">
       <div className="space-y-2">
         <h3 className="text-primary-blue font-semibold text-sm md:text-lg uppercase">
-          Lorem, ipsum dolor.
+          Top Vacation Spots
         </h3>
         <div className="flex flex-row justify-between items-center">
           <h1 className="capitalize font-bold text-xl md:text-3xl">
-            Lorem ipsum dolor sit amet
+            Discover Your Perfect Getaway
           </h1>
           <div className="hidden md:flex flex-row gap-1">
             <Link href={"/places"} className="text-primary-blue">
