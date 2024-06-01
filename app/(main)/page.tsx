@@ -2,6 +2,7 @@ import FindDestination from "@/components/main/FindDestination";
 import HeroLanding from "@/components/main/HeroLanding";
 import Navbar from "@/components/main/Navbar";
 import Reservation from "@/components/main/Reservation";
+import Testimonials from "@/components/main/Testimonials";
 import Vacation from "@/components/main/Vacation";
 import React from "react";
 
@@ -13,6 +14,7 @@ const Home = () => {
       <Vacation />
       <Reservation />
       <FindDestination />
+      <Testimonials />
     </div>
   );
 };
