@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import axiosInstance from "@/helper/axiosInstance";
 import {
   Blocks,
   Home,
@@ -21,8 +24,28 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      const res = await axiosInstance.delete("/auth/logout");
+      if (res.data.statusCode === 200) {
+        Cookies.remove("accessToken");
+        Cookies.remove("user");
+
+        toast.success("Log out successfully!");
+        router.push("/");
+      }
+    } catch (error) {
+      // @ts-ignore
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
@@ -76,35 +99,26 @@ const Navbar = () => {
         <h1 className="font-bold text-xl text-primary-blue">TRAVOLKS!</h1>
       </div>
       <div className="relative ml-auto flex-1 md:grow-0">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground text-custom-Sky-High" />
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
           placeholder="Search..."
-          className="w-full  rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px] text-custom-Fly-byNight placeholder:text-custom-Sky-High"
+          className="w-full  rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
         />
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback className="bg-custom-Sky-High text-custom-Grams-Hair">
-              TRV
-            </AvatarFallback>
+            <AvatarFallback>TRV</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-56">
-          <DropdownMenuLabel className="text-custom-Fly-byNight">
-            User
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>User</DropdownMenuLabel>
           <DropdownMenuSeparator />
-
-          <DropdownMenuItem className="text-custom-Fly-byNight">
-            Support
-          </DropdownMenuItem>
+          <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-custom-Strong-Iris">
-            Logout
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>

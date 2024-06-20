@@ -59,7 +59,7 @@ const Navbar = () => {
           })}
         </div>
         <Button variant={"primaryBlue"} asChild>
-          <Link href="#">Sign In</Link>
+          <Link href="/sign-in">Sign In</Link>
         </Button>
       </div>
       <div className="block md:hidden">
