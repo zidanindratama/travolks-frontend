@@ -37,7 +37,7 @@ const links: Link[] = [
 
 const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-row justify-between items-center max-w-7xl mx-auto px-6">
       <Link
         href={"/"}
         className="font-bold text-primary-blue hover:text-primary-blue-light uppercase text-xl"

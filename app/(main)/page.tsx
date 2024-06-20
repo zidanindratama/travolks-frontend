@@ -11,17 +11,21 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="flex flex-col max-w-7xl justify-center mx-auto p-6">
-      <Navbar />
-      <HeroLanding />
-      <Vacation />
-      <Reservation />
-      <FindDestination />
-      <Testimonials />
-      <FAQ />
-      <CTA />
-      <Footer />
-    </div>
+    <>
+      <div className=" sticky top-0 py-4 bg-white drop-shadow z-10">
+        <Navbar />
+      </div>
+      <div className="flex flex-col max-w-7xl justify-center mx-auto p-6">
+        <HeroLanding />
+        <Vacation />
+        <Reservation />
+        <FindDestination />
+        <Testimonials />
+        <FAQ />
+        <CTA />
+        <Footer />
+      </div>
+    </>
   );
 };
 
