@@ -35,7 +35,7 @@ const formSchema = z.object({
   password: z.string().min(5, "Password must be at least 5 characters"),
 });
 
-const page = () => {
+const SignupPage = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -136,4 +136,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignupPage;
