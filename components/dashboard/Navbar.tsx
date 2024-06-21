@@ -9,6 +9,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -30,19 +38,20 @@ import React from "react";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter();
   const userDataFromCookie = useRetrieveUserDataFromCookie();
-  console.log(userDataFromCookie);
 
-  const {
-    data: userProfileData,
-    isLoading,
-    isSuccess,
-  } = useFetchData({
+  const { data: userProfileData, isSuccess } = useFetchData({
     queryKey: ["userProfileData"],
     dataProtected: `profile/user/${userDataFromCookie?.sub}`,
+  });
+
+  const { data: userData, isSuccess: isSuccessUser } = useFetchData({
+    queryKey: ["userData"],
+    dataProtected: `users/${userDataFromCookie?.sub}`,
   });
 
   const handleLogout = async () => {
@@ -124,17 +133,43 @@ const Navbar = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar>
-            <AvatarImage src={isSuccess && userProfileData?.data.image} />
+            <AvatarImage
+              src={isSuccess && userProfileData?.data.image}
+              className="object-cover"
+            />
             <AvatarFallback>TRV</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-56">
           <DropdownMenuLabel>
-            {isSuccess ? (
-              userProfileData?.data.fullname
-            ) : (
-              <Skeleton className="w-16 h-4" />
-            )}
+            <Dialog>
+              <DialogTrigger>
+                {isSuccess ? (
+                  userProfileData?.data.fullname || userData?.data.email
+                ) : (
+                  <Skeleton className="w-16 h-4" />
+                )}
+              </DialogTrigger>
+              <DialogContent className="w-9/12 rounded-md">
+                <DialogHeader>
+                  <DialogTitle className="mb-4">
+                    User Profile Picture
+                  </DialogTitle>
+                  <DialogDescription>
+                    {isSuccess ? (
+                      <Image
+                        src={userProfileData?.data.image}
+                        alt="user profile"
+                        width={500}
+                        height={500}
+                      />
+                    ) : (
+                      <Skeleton className="h-32 w-48" />
+                    )}
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Support</DropdownMenuItem>
