@@ -114,7 +114,7 @@ const SigninPage = () => {
                   {form.formState.isSubmitting ? (
                     <p className="flex gap-x-2 items-center">
                       <LoaderCircle className="animate-spin h-4 w-4" />
-                      loading...
+                      Loading...
                     </p>
                   ) : (
                     "Signin"

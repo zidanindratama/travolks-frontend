@@ -13,6 +13,9 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import axiosInstance from "@/helper/axiosInstance";
+import { useFetchData } from "@/hooks/useFetchData";
+import { Skeleton } from "@/components/ui/skeleton";
+import useRetrieveUserDataFromCookie from "@/hooks/useRetreiveUserDataFromCookie";
 import {
   Blocks,
   Home,
@@ -30,6 +33,18 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
+  const userDataFromCookie = useRetrieveUserDataFromCookie();
+  console.log(userDataFromCookie);
+
+  const {
+    data: userProfileData,
+    isLoading,
+    isSuccess,
+  } = useFetchData({
+    queryKey: ["userProfileData"],
+    dataProtected: `profile/user/${userDataFromCookie?.sub}`,
+  });
+
   const handleLogout = async () => {
     try {
       const res = await axiosInstance.delete("/auth/logout");
@@ -109,12 +124,18 @@ const Navbar = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src={isSuccess && userProfileData?.data.image} />
             <AvatarFallback>TRV</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-56">
-          <DropdownMenuLabel>User</DropdownMenuLabel>
+          <DropdownMenuLabel>
+            {isSuccess ? (
+              userProfileData?.data.fullname
+            ) : (
+              <Skeleton className="w-16 h-4" />
+            )}
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
