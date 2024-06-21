@@ -82,10 +82,10 @@ const Navbar = () => {
               })}
               <div className="w-full flex flex-row gap-4 items-center">
                 <Button variant={"outlineBlue"} className="w-full" asChild>
-                  <Link href="#">Sign Up</Link>
+                  <Link href="/sign-up">Sign Up</Link>
                 </Button>
                 <Button variant={"primaryBlue"} className="w-full" asChild>
-                  <Link href="#">Sign In</Link>
+                  <Link href="/sign-in">Sign In</Link>
                 </Button>
               </div>
             </div>

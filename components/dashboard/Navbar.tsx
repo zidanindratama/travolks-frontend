@@ -158,7 +158,11 @@ const Navbar = () => {
                   <DialogDescription>
                     {isSuccess ? (
                       <Image
-                        src={userProfileData?.data.image}
+                        src={
+                          userProfileData?.data.image !== null
+                            ? userProfileData?.data.image
+                            : "/images/placeholder.jpeg"
+                        }
                         alt="user profile"
                         width={500}
                         height={500}
@@ -172,7 +176,9 @@ const Navbar = () => {
             </Dialog>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href={"/dashboard/settings"}>Settings</Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
