@@ -3,19 +3,19 @@
 import { DataTable } from "@/components/DataTable";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
-import { categoryColumn } from "./CategoryColumn";
 import { useSearchParams } from "next/navigation";
 import React from "react";
+import { userColumn } from "./UserColumn";
 
-const CategoriesDataTable = () => {
+const UsersDataTable = () => {
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || "1";
   const count = searchParams.get("count") || "10";
   const limit = typeof count === "string" ? parseInt(count) : 10;
 
   const { data, isLoading, isSuccess, refetch, isRefetching } = useFetchData({
-    queryKey: ["categoriesData", page],
-    dataProtected: `categories?pgSize=${count}&pgNum=${page}`,
+    queryKey: ["usersData", page],
+    dataProtected: `users?pgSize=${count}&pgNum=${page}`,
   });
 
   const pageCount = Math.ceil(data?.data.meta.count / limit);
@@ -26,8 +26,8 @@ const CategoriesDataTable = () => {
       {isSuccess && !isRefetching && (
         <>
           <DataTable
-            propsData={data?.data.categories}
-            columnsData={categoryColumn}
+            propsData={data?.data.user}
+            columnsData={userColumn}
             pageCount={pageCount}
           />
         </>
@@ -36,4 +36,4 @@ const CategoriesDataTable = () => {
   );
 };
 
-export default CategoriesDataTable;
+export default UsersDataTable;

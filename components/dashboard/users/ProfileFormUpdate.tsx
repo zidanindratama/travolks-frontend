@@ -10,6 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   Form,
   FormControl,
   FormDescription,
@@ -29,11 +37,12 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
-import useRetrieveUserDataFromCookie from "@/hooks/useRetreiveUserDataFromCookie";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useUpdateData } from "@/hooks/useUpdateData";
+import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 enum Gender {
   MALE = "MALE",
@@ -52,19 +61,19 @@ const formSchema = z.object({
   image: z.any().optional(),
 });
 
-const SettingsProfile = () => {
-  const userDataFromCookie = useRetrieveUserDataFromCookie();
-
-  const { data: userProfileData, isSuccess } = useFetchData({
-    queryKey: ["userProfileData"],
-    dataProtected: `profile/user/${userDataFromCookie?.sub}`,
+const ProfileFormUpdate = ({ id }: any) => {
+  const { data: userProfileDetailData, isSuccess } = useFetchData({
+    queryKey: ["userProfileDetailData"],
+    dataProtected: `profile/user/${id}`,
   });
 
+  console.log(userProfileDetailData);
+
   const preLoadValues = {
-    fullname: userProfileData?.data.fullname,
-    gender: userProfileData?.data.gender,
-    address: userProfileData?.data.address,
-    phoneNumber: userProfileData?.data.phoneNumber,
+    fullname: userProfileDetailData?.data.fullname,
+    gender: userProfileDetailData?.data.gender,
+    address: userProfileDetailData?.data.address,
+    phoneNumber: userProfileDetailData?.data.phoneNumber,
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -75,8 +84,8 @@ const SettingsProfile = () => {
   const imageRef = form.register("image");
 
   const mutationUpdateProfile = useUpdateData({
-    queryKey: "userProfileData",
-    dataProtected: `profile/user/${userDataFromCookie?.sub}`,
+    queryKey: "userProfileDetailData",
+    dataProtected: `profile/user/${id}`,
   });
 
   const onSubmit = async (data: FieldValues) => {
@@ -106,7 +115,34 @@ const SettingsProfile = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card>
             <CardHeader>
-              <CardTitle>Update Profile</CardTitle>
+              <CardTitle>
+                <Dialog>
+                  <DialogTrigger>Update Profile</DialogTrigger>
+                  <DialogContent className="w-9/12 rounded-md">
+                    <DialogHeader>
+                      <DialogTitle className="mb-4">
+                        User Profile Picture
+                      </DialogTitle>
+                      <DialogDescription>
+                        {isSuccess ? (
+                          <Image
+                            src={
+                              userProfileDetailData?.data.image !== null
+                                ? userProfileDetailData?.data.image
+                                : "/images/placeholder.jpeg"
+                            }
+                            alt="user profile"
+                            width={500}
+                            height={500}
+                          />
+                        ) : (
+                          <Skeleton className="h-32 w-48" />
+                        )}
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </CardTitle>
               <CardDescription>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               </CardDescription>
@@ -202,4 +238,4 @@ const SettingsProfile = () => {
   );
 };
 
-export default SettingsProfile;
+export default ProfileFormUpdate;
