@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import PlaceFormUpdate from "@/components/dashboard/places/PlaceFormUpdate";
 import PlaceFormDelete from "@/components/dashboard/places/PlaceFormDelete";
+import CategoriesOnPlace from "@/components/dashboard/places/categories-on-place/CategoriesOnPlace";
 
 const page = ({ params }: any) => {
   return (
@@ -31,6 +32,9 @@ const page = ({ params }: any) => {
       <PlaceFormDelete slug={params.slug} />
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         <PlaceFormUpdate slug={params.slug} />
+        <div className="">
+          <CategoriesOnPlace slug={params.slug} />
+        </div>
       </div>
     </div>
   );

@@ -98,7 +98,7 @@ const PlaceFormUpdate = ({ slug }: any) => {
   };
 
   return (
-    <div className="md:col-span-3">
+    <div className="md:col-span-2">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card>
