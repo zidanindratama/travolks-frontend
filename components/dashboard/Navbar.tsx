@@ -103,14 +103,14 @@ const Navbar = () => {
               Categories
             </Link>
             <Link
-              href="/dashboard/categories"
+              href="/dashboard/users"
               className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
             >
               <PersonStanding className="h-5 w-5" />
               Users
             </Link>
             <Link
-              href="/dashboard/categories"
+              href="/dashboard/places"
               className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
             >
               <MountainSnow className="h-5 w-5" />

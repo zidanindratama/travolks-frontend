@@ -67,8 +67,6 @@ const ProfileFormUpdate = ({ id }: any) => {
     dataProtected: `profile/user/${id}`,
   });
 
-  console.log(userProfileDetailData);
-
   const preLoadValues = {
     fullname: userProfileDetailData?.data.fullname,
     gender: userProfileDetailData?.data.gender,
