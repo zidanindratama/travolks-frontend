@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
 
 interface Category {
   name: string;
@@ -77,7 +78,9 @@ export const placeColumn: ColumnDef<Place>[] = [
         <ChevronsUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div>{row.getValue("address")}</div>,
+    cell: ({ row }) => (
+      <div className="truncate">{row.getValue("address")}</div>
+    ),
   },
   {
     accessorKey: "categories",
@@ -93,7 +96,20 @@ export const placeColumn: ColumnDef<Place>[] = [
     cell: ({ row }) => {
       const categories = row.getValue("categories") as Category[];
       return (
-        <div>{categories.map((category) => category.name).join(", ")}</div>
+        <div className="flex flex-warp gap-1">
+          {categories.length < 1 && <h1>-</h1>}
+          {categories.map((category, index) =>
+            index % 2 === 0 ? (
+              <Badge variant="default" key={category.name}>
+                {category.name}
+              </Badge>
+            ) : (
+              <Badge variant="secondary" key={category.name}>
+                {category.name}
+              </Badge>
+            )
+          )}
+        </div>
       );
     },
   },
@@ -112,16 +128,23 @@ export const placeColumn: ColumnDef<Place>[] = [
       const images = row.getValue("images") as string[];
       return (
         <div>
-          {images.map((image, index) => (
+          {images.length > 0 ? (
             <Image
-              key={index}
-              src={image}
+              src={images[0]}
               width={500}
               height={500}
-              alt={`Image ${index + 1}`}
+              alt="Image 1"
               className="w-24 h-16 object-cover rounded-sm"
             />
-          ))}
+          ) : (
+            <Image
+              src={"/images/blur.jpg"}
+              width={500}
+              height={500}
+              alt="Image blur"
+              className="w-24 h-16 object-cover rounded-sm"
+            />
+          )}
         </div>
       );
     },
