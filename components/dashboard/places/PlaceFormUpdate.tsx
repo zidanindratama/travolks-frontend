@@ -27,6 +27,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
+import Editor from "@/components/Editor";
 
 const MapWithNoSSR = dynamic(() => import("./MapComponent"), {
   ssr: false,
@@ -36,24 +37,30 @@ const formSchema = z.object({
   name: z
     .string()
     .min(5, "Name must be at least 5 characters long")
-    .max(50, "Name must be at most 50 characters long"),
+    .max(250, "Name must be at most 250 characters long"),
   address: z
     .string()
     .min(5, "Address must be at least 5 characters long")
-    .max(100, "Address must be at most 50 characters long"),
-  description: z.string(),
+    .max(250, "Address must be at most 250 characters long"),
 });
 
 const PlaceFormUpdate = ({ slug }: any) => {
+  const [textEditor, setTextEditor] = useState("");
+
   const { data: placeDetailData, isSuccess } = useFetchData({
     queryKey: ["placeDetailData"],
     dataProtected: `places/${slug}`,
   });
 
+  useEffect(() => {
+    if (isSuccess) {
+      setTextEditor(placeDetailData?.data.description);
+    }
+  }, [placeDetailData?.data.description, isSuccess]);
+
   const preLoadValues = {
     name: placeDetailData?.data.name,
     address: placeDetailData?.data.address,
-    description: placeDetailData?.data.description,
   };
 
   const [position, setPosition] = useState<[number, number]>([
@@ -86,19 +93,19 @@ const PlaceFormUpdate = ({ slug }: any) => {
   const mutationUpdatePlace = useUpdateData({
     queryKey: "placeData",
     dataProtected: `places/${slug}`,
-    backUrl: "/dashboard/places",
   });
 
   const onSubmit = async (data: FieldValues) => {
     mutationUpdatePlace.mutate({
       ...data,
+      description: textEditor,
       latitude: position[0].toString(),
       longitude: position[1].toString(),
     });
   };
 
   return (
-    <div className="md:col-span-2">
+    <div className="md:col-span-2 h-fit">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card>
@@ -140,25 +147,11 @@ const PlaceFormUpdate = ({ slug }: any) => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      {/* @ts-ignore */}
-                      <Textarea
-                        placeholder="Tell us a little bit about this place"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div>
-                <FormLabel>Position</FormLabel>
+              <div className="space-y-2">
+                <FormLabel>Description</FormLabel>
+                <Editor data={textEditor} setTextEditor={setTextEditor} />
+              </div>
+              <div className="mt-4">
                 <MapWithNoSSR position={position} handleClick={handleClick} />
               </div>
             </CardContent>

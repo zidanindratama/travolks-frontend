@@ -85,3 +85,11 @@
 .leaflet-bottom {
   z-index: 0 !important;
 }
+
+.ck-content * {
+  all: revert;
+}
+
+.ck-editor__editable_inline {
+  min-height: 200px;
+}

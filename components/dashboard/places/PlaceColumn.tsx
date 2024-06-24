@@ -96,15 +96,15 @@ export const placeColumn: ColumnDef<Place>[] = [
     cell: ({ row }) => {
       const categories = row.getValue("categories") as Category[];
       return (
-        <div className="flex flex-warp gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {categories.length < 1 && <h1>-</h1>}
           {categories.map((category, index) =>
             index % 2 === 0 ? (
-              <Badge variant="default" key={category.name}>
+              <Badge variant="default" key={category.name} className="w-fit">
                 {category.name}
               </Badge>
             ) : (
-              <Badge variant="secondary" key={category.name}>
+              <Badge variant="secondary" key={category.name} className="w-fit">
                 {category.name}
               </Badge>
             )

@@ -30,19 +30,24 @@ const MapWithNoSSR = dynamic(() => import("./MapComponent"), {
   ssr: false,
 });
 
+const Editor = dynamic(() => import("./../../Editor"), {
+  ssr: false,
+});
+
 const formSchema = z.object({
   name: z
     .string()
     .min(5, "Name must be at least 5 characters long")
-    .max(50, "Name must be at most 50 characters long"),
+    .max(250, "Name must be at most 250 characters long"),
   address: z
     .string()
     .min(5, "Address must be at least 5 characters long")
-    .max(100, "Address must be at most 100 characters long"),
-  description: z.string(),
+    .max(250, "Address must be at most 250 characters long"),
 });
 
 const PlaceFormCreate = () => {
+  const [textEditor, setTextEditor] = useState("");
+
   const [position, setPosition] = useState<[number, number]>([
     -6.2088, 106.8456,
   ]);
@@ -64,6 +69,7 @@ const PlaceFormCreate = () => {
   const onSubmit = async (data: FieldValues) => {
     mutationAddPlace.mutate({
       ...data,
+      description: textEditor,
       latitude: position[0].toString(),
       longitude: position[1].toString(),
     });
@@ -112,25 +118,11 @@ const PlaceFormCreate = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      {/* @ts-ignore */}
-                      <Textarea
-                        placeholder="Tell us a little bit about this place"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div>
-                <FormLabel>Position</FormLabel>
+              <div className="space-y-2">
+                <FormLabel>Description</FormLabel>
+                <Editor setTextEditor={setTextEditor} />
+              </div>
+              <div className="mt-4">
                 <MapWithNoSSR position={position} handleClick={handleClick} />
               </div>
             </CardContent>
