@@ -10,8 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
 import CategoryOnPlaceFormDelete from "./CategoryOnPlaceFormDelete";
@@ -62,7 +60,7 @@ const CategoriesOnPlaceTable = ({ slug }: any) => {
                     <TableCell>{COP.categoryName}</TableCell>
                     <TableCell>
                       <CategoryOnPlaceFormDelete
-                        placeId={categoryOnPlace.placeId}
+                        slug={slug}
                         COPID={COP.categoryOnPlaceId}
                       />
                     </TableCell>

@@ -10,6 +10,7 @@ import {
 import PlaceFormUpdate from "@/components/dashboard/places/PlaceFormUpdate";
 import PlaceFormDelete from "@/components/dashboard/places/PlaceFormDelete";
 import CategoriesOnPlace from "@/components/dashboard/places/categories-on-place/CategoriesOnPlace";
+import ImagesOnPlace from "@/components/dashboard/places/images-on-place/ImagesOnPlace";
 
 const page = ({ params }: any) => {
   return (
@@ -32,8 +33,9 @@ const page = ({ params }: any) => {
       <PlaceFormDelete slug={params.slug} />
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         <PlaceFormUpdate slug={params.slug} />
-        <div className="">
+        <div className="flex flex-col gap-8">
           <CategoriesOnPlace slug={params.slug} />
+          <ImagesOnPlace slug={params.slug} />
         </div>
       </div>
     </div>

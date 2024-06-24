@@ -5,10 +5,10 @@ import { useDeleteData } from "@/hooks/useDeleteData";
 import { Trash } from "lucide-react";
 import React from "react";
 
-const CategoryOnPlaceFormDelete = ({ slug, COPID }: any) => {
+const ImageOnPlaceFormDelete = ({ imageId, slug }: any) => {
   const mutationDeleteCategory = useDeleteData({
-    queryKey: "categoriesOnPlaceData",
-    dataProtected: `categories-on-place/${COPID}`,
+    queryKey: "imagesOnPlaceData",
+    dataProtected: `images-on-place/${imageId}`,
     backUrl: `/dashboard/places/${slug}`,
   });
 
@@ -26,4 +26,4 @@ const CategoryOnPlaceFormDelete = ({ slug, COPID }: any) => {
   );
 };
 
-export default CategoryOnPlaceFormDelete;
+export default ImageOnPlaceFormDelete;
