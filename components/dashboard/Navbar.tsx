@@ -82,7 +82,7 @@ const Navbar = () => {
         <SheetContent side="left" className="sm:max-w-xs">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
-              href="/dashboard"
+              href="/"
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-blue text-lg font-semibold text-primary-foreground md:text-base"
             >
               <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
@@ -120,7 +120,9 @@ const Navbar = () => {
         </SheetContent>
       </Sheet>
       <div>
-        <h1 className="font-bold text-xl text-primary-blue">TRAVOLKS!</h1>
+        <Link href={"/"} className="font-bold text-xl text-primary-blue">
+          TRAVOLKS!
+        </Link>
       </div>
       <div className="relative ml-auto flex-1 md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

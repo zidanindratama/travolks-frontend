@@ -14,12 +14,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
-interface Category {
+export interface Category {
   name: string;
   slug: string;
 }
 
-interface Place {
+export interface Place {
   id: string;
   name: string;
   slug: string;
@@ -101,7 +101,7 @@ export const placeColumn: ColumnDef<Place>[] = [
           {categories.map((category, index) =>
             index % 2 === 0 ? (
               <Badge
-                variant="default"
+                variant="blue"
                 key={category.name}
                 className="w-fit truncate h-fit"
               >

@@ -1,16 +1,22 @@
-import { ChevronRight, Plane } from "lucide-react";
+"use client";
+
+import { useFetchData } from "@/hooks/useFetchData";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Place } from "../dashboard/places/PlaceColumn";
+import { Badge } from "../ui/badge";
+import { Skeleton } from "../ui/skeleton";
 
-interface Vacation {
+interface VacationInt {
   id: number;
   image: string;
   title: string;
   description: string;
 }
 
-const vacations: Vacation[] = [
+const vacations: VacationInt[] = [
   {
     id: 1,
     image: "/image-1.jpg",
@@ -38,6 +44,17 @@ const vacations: Vacation[] = [
 ];
 
 const Vacation = () => {
+  const {
+    data: placesData,
+    isLoading,
+    isSuccess,
+    refetch,
+    isRefetching,
+  } = useFetchData({
+    queryKey: ["placesData"],
+    dataProtected: `places`,
+  });
+
   return (
     <div className="my-16 md:mt-0">
       <div className="space-y-2">
@@ -57,28 +74,47 @@ const Vacation = () => {
         </div>
       </div>
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-        {vacations.map((vacation) => {
-          return (
-            <div
-              className="space-y-3 hover:translate-y-[-5px] hover:animate-pulse"
-              key={vacation.id}
-            >
-              <Image
-                className="w-64 object-cover rounded-lg"
-                alt={vacation.title}
-                src={vacation.image}
-                width={1200}
-                height={1200}
-              />
-              <div>
-                <h1 className="font-bold text-md Md:text-lg truncate">
-                  {vacation.title}
-                </h1>
-                <p className="text-sm">{vacation.description}</p>
+        {isLoading &&
+          vacations.map((vacation: VacationInt) => {
+            return (
+              <div
+                className="space-y-3 hover:translate-y-[-5px] hover:animate-pulse"
+                key={vacation.id}
+              >
+                <Skeleton className="w-64 h-48 object-cover rounded-lg" />
+                <div>
+                  <Skeleton className="w-18 h-4" />
+                  <Skeleton className="w-8 h-4 mt-1" />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        {isSuccess &&
+          placesData?.data.places.map((vacation: Place) => {
+            return (
+              <Link
+                href={`/place/${vacation.slug}`}
+                className="space-y-3 hover:translate-y-[-5px] hover:animate-pulse"
+                key={vacation.id}
+              >
+                <Image
+                  className="w-64 h-48 object-cover rounded-lg"
+                  placeholder="blur"
+                  blurDataURL="/images/blur.jpg"
+                  alt={vacation.name}
+                  src={vacation.images[0]}
+                  width={1200}
+                  height={1200}
+                />
+                <div>
+                  <h1 className="font-bold text-md Md:text-lg truncate">
+                    {vacation.name}
+                  </h1>
+                  <Badge variant={"blue"}>{vacation.categories[0].name}</Badge>
+                </div>
+              </Link>
+            );
+          })}
       </div>
     </div>
   );

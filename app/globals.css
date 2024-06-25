@@ -90,6 +90,10 @@
   all: revert;
 }
 
+.ck-content p {
+  text-align: justify;
+}
+
 .ck-editor__editable_inline {
   min-height: 200px;
 }
