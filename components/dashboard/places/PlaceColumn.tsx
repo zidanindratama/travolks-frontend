@@ -100,11 +100,19 @@ export const placeColumn: ColumnDef<Place>[] = [
           {categories.length < 1 && <h1>-</h1>}
           {categories.map((category, index) =>
             index % 2 === 0 ? (
-              <Badge variant="default" key={category.name} className="w-fit">
+              <Badge
+                variant="default"
+                key={category.name}
+                className="w-fit truncate h-fit"
+              >
                 {category.name}
               </Badge>
             ) : (
-              <Badge variant="secondary" key={category.name} className="w-fit">
+              <Badge
+                variant="secondary"
+                key={category.name}
+                className="w-fit truncate h-fit"
+              >
                 {category.name}
               </Badge>
             )

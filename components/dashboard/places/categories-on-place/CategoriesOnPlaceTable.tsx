@@ -52,8 +52,6 @@ const CategoriesOnPlaceTable = ({ slug }: any) => {
           categoriesOnPlaceData?.data.categoriesOnPlace.length > 0 ? (
           categoriesOnPlaceData?.data.categoriesOnPlace.map(
             (categoryOnPlace: any) => {
-              console.log(categoryOnPlace);
-
               return categoryOnPlace.categoriesOnPlace.map((COP: any) => {
                 return (
                   <TableRow key={COP.categoryOnPlaceId}>

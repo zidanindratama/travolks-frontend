@@ -36,7 +36,6 @@ const ImagesOnPlaceTable = ({ slug }: any) => {
       return image.imageUrl;
     });
   });
-  console.log(imagesOnPlaceData?.data.length);
 
   return (
     <Table>

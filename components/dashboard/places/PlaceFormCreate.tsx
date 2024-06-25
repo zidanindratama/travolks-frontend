@@ -118,9 +118,9 @@ const PlaceFormCreate = () => {
                   </FormItem>
                 )}
               />
-              <div className="space-y-2">
+              <div className="space-y-2 min-w-[18rem]">
                 <FormLabel>Description</FormLabel>
-                <Editor setTextEditor={setTextEditor} />
+                <Editor data={textEditor} setTextEditor={setTextEditor} />
               </div>
               <div className="mt-4">
                 <MapWithNoSSR position={position} handleClick={handleClick} />
