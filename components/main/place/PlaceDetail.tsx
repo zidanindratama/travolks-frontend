@@ -128,6 +128,29 @@ const PlaceDetail = ({ slug }: any) => {
         <>
           <div>
             <Skeleton className="w-full h-24 md:h-64 rounded-md" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div className="col-span-1 md:col-span-2">
+                <Skeleton className="w-32 h-4" />
+                <Skeleton className="w-full h-48 mt-5" />
+              </div>
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-3">
+                  <Skeleton className="w-32 h-4" />
+                  <div className="flex flex-row gap-6">
+                    <Skeleton className="w-24 h-6" />
+                    <Skeleton className="w-24 h-6" />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Skeleton className="w-32 h-4" />
+                  <Skeleton className="w-48 h-6" />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Skeleton className="w-32 h-4" />
+                  <Skeleton className="w-full h-24" />
+                </div>
+              </div>
+            </div>
           </div>
         </>
       )}
