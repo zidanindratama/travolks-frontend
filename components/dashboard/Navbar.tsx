@@ -39,6 +39,7 @@ import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { links } from "./Sidebar";
 
 const Navbar = () => {
   const router = useRouter();
@@ -88,34 +89,18 @@ const Navbar = () => {
               <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
               <span className="sr-only">Travolks!</span>
             </Link>
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
-            >
-              <Home className="h-5 w-5" />
-              Dashboard
-            </Link>
-            <Link
-              href="/dashboard/categories"
-              className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
-            >
-              <Blocks className="h-5 w-5" />
-              Categories
-            </Link>
-            <Link
-              href="/dashboard/users"
-              className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
-            >
-              <PersonStanding className="h-5 w-5" />
-              Users
-            </Link>
-            <Link
-              href="/dashboard/places"
-              className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
-            >
-              <MountainSnow className="h-5 w-5" />
-              Places
-            </Link>
+            {links.map((link) => {
+              return (
+                <Link
+                  key={link.id}
+                  href={link.url}
+                  className="flex items-center gap-4 px-2.5 text-foreground hover:text-foreground"
+                >
+                  <link.icon className="h-5 w-5" />
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
         </SheetContent>
       </Sheet>

@@ -42,7 +42,7 @@ const PlaceDetail = ({ slug }: any) => {
             />
             <div className="absolute inset-0 bg-black opacity-30"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-white text-xl md:text-3xl font-semibold drop-shadow-md uppercase">
+              <p className="text-white text-center text-xl md:text-3xl font-semibold drop-shadow-md uppercase">
                 {place?.name}
               </p>
             </div>
@@ -114,14 +114,13 @@ const PlaceDetail = ({ slug }: any) => {
             </div>
           </div>
           <iframe
-            title="Google Map"
-            src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31612.36012390921!2d${place?.longitude}!3d${place?.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd637aaab794a41%3A0xada40d36ecd2a5dd!2sGn.%20Bromo!5e0!3m2!1sid!2sid!4v1719277975998!5m2!1sid!2sid`}
+            src={`https://maps.google.com/maps?q=${place?.latitude},${place.longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
             style={{ border: 0 }}
             allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             className="w-full h-96 mt-8 rounded-md"
-          ></iframe>
+          />
         </>
       )}
       {isLoading && (

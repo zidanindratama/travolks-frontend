@@ -5,32 +5,30 @@ import { useDeleteData } from "@/hooks/useDeleteData";
 import { Trash } from "lucide-react";
 import React from "react";
 
-const PlaceFormDelete = ({ slug }: any) => {
-  console.log(slug);
-
-  const mutationDeletePlace = useDeleteData({
-    queryKey: "placesData",
-    dataProtected: `places/${slug}`,
-    backUrl: "/dashboard/places",
+const TripFormDelete = ({ slug }: any) => {
+  const mutationDeleteTrip = useDeleteData({
+    queryKey: "tripsData",
+    dataProtected: `trips/${slug}`,
+    backUrl: "/dashboard/trips",
   });
 
   const handleDelete = (e: any) => {
     e.preventDefault();
-    mutationDeletePlace.mutate();
+    mutationDeleteTrip.mutate();
   };
 
   return (
-    <div className="flex flex-row justify-end mt-6">
+    <div className="flex flex-row justify-end mb-6">
       <Button
         variant={"destructive"}
         className="flex flex-row gap-2"
         onClick={handleDelete}
       >
         <Trash className="w-4 h-4" />
-        Delete Place
+        Delete Trip
       </Button>
     </div>
   );
 };
 
-export default PlaceFormDelete;
+export default TripFormDelete;

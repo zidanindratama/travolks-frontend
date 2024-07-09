@@ -5,7 +5,7 @@ const DEV_URL = "http://localhost:3100";
 const PROD_URL = "https://nestjs-03-travolks.vercel.app";
 
 const axiosInstance = axios.create({
-  baseURL: PROD_URL,
+  baseURL: DEV_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -22,7 +22,7 @@ async function refreshAccessToken() {
   }
 
   const newAccessToken = await axios.post(
-    `${PROD_URL}/auth/refresh-token`,
+    `${DEV_URL}/auth/refresh-token`,
     null,
     {
       headers: {

@@ -90,7 +90,7 @@ const Vacation = () => {
             );
           })}
         {isSuccess &&
-          placesData?.data.places.map((vacation: Place) => {
+          placesData?.data.places.slice(0, 4).map((vacation: Place) => {
             return (
               <Link
                 href={`/place/${vacation.slug}`}
